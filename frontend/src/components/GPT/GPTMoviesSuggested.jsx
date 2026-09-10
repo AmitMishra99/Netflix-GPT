@@ -1,9 +1,17 @@
 import { useSelector } from "react-redux";
 import MoviesList from "../Secondary/MoviesList";
+import Loader from "../Loader"
 
 const GPTMoviesSuggested = () => {
-  const { moviesTitle, moviesRes } = useSelector((store) => store.gpt);
+  const { moviesTitle, moviesRes, loading } = useSelector((store) => store.gpt);
+
   if (!moviesTitle) return null;
+
+  if (loading) {
+    return (
+      <Loader/>
+    );
+  }
 
   return (
     <div className="bg-black/80 backdrop-blur-md py-6 px-4 sm:px-8 md:px-12 mt-8 rounded-2xl border border-gray-800/80 shadow-2xl">
